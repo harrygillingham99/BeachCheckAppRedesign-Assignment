@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { createDrawerNavigator, DrawerScreenProps } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import { RootDrawerParams } from './assets/scripts/types/RootDrawerParams';
-import { HomeScreen } from './assets/scripts/screens/HomeScreen';
-import { NotificationsScreen } from './assets/scripts/screens/NotificationsScreen';
+import * as React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import { RootDrawerParams } from "./assets/scripts/types/RootDrawerParams";
+import { HomeScreen } from "./assets/scripts/screens/HomeScreen";
+import { SettingsScreen } from "./assets/scripts/screens/SettingsScreen";
+import { BeachMap } from "./assets/scripts/screens/BeachMapScreen";
 
 const Drawer = createDrawerNavigator<RootDrawerParams>();
 
@@ -12,7 +13,8 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="Beach Map" component={BeachMap} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

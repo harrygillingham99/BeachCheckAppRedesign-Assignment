@@ -1,4 +1,5 @@
 export type RootDrawerParams = {
-    Home : undefined,
-    Notifications : {testString : string}
-}
+  Home: undefined;
+  Settings: { testString: string } | undefined;
+  BeachMap: undefined;
+};

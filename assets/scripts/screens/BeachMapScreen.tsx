@@ -4,13 +4,14 @@ import { View, Button, StyleSheet, ScrollView, Text } from "react-native";
 import { GetStyle } from "../utils/styles";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView from "react-native-maps";
-import { ScreenRegistry } from "../utils/ScreenRegistry";
+import { ComponentRegistry } from "../utils/ComponentRegistry";
+import { ScreenFooter } from "../components/ScreenFooter";
 
-const PageId: ScreenRegistry = ScreenRegistry.Map;
+const componentId: ComponentRegistry = ComponentRegistry.Map;
 
 type BeachMapScreenProps = DrawerScreenProps<RootDrawerParams, "BeachMap">;
 
-const styles = GetStyle(PageId);
+const styles = GetStyle(componentId);
 
 export const BeachMap = ({ navigation }: BeachMapScreenProps) => (
   <View style={{ ...styles.container, flex: 1 }}>
@@ -27,8 +28,6 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => (
         }}
       ></MapView>
     </ScrollView>
-    <View style={styles.footer}>
-      <Button onPress={() => navigation.goBack()} title={"Back"}></Button>
-    </View>
+    <ScreenFooter Previous={navigation.goBack}/>
   </View>
 );

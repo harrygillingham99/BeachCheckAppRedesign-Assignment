@@ -1,0 +1,18 @@
+import React, { ComponentElement } from "react";
+import { View, Button } from "react-native";
+import { ComponentRegistry } from "../utils/ComponentRegistry";
+import { GetStyle } from "../utils/styles";
+
+const componentId : ComponentRegistry = ComponentRegistry.Footer;
+
+const styles = GetStyle(componentId);
+
+interface ScreenFooterProps{
+    Previous: () => void;
+}
+
+export const ScreenFooter = (props: ScreenFooterProps) => {
+    return(<View style={styles.footer}>
+        <Button onPress={() => props.Previous()} title={"Back"}></Button>
+      </View>)
+}

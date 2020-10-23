@@ -3,13 +3,14 @@ import React from "react";
 import { View, Button, ScrollView, Text } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { GetStyle } from "../utils/styles";
-import { ScreenRegistry } from "../utils/ScreenRegistry"
+import { ComponentRegistry } from "../utils/ComponentRegistry"
+import { ScreenFooter } from "../components/ScreenFooter";
 
-const PageId : ScreenRegistry = ScreenRegistry.Settings;
+const componentId : ComponentRegistry = ComponentRegistry.Settings;
 
 type SettingsProps = DrawerScreenProps<RootDrawerParams, "Settings">;
 
-const styles = GetStyle(PageId);
+const styles = GetStyle(componentId);
 
 export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
   return (
@@ -17,9 +18,7 @@ export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
       <ScrollView>
         <Text>Settings</Text>
       </ScrollView>
-      <View style={styles.footer}>
-        <Button onPress={() => navigation.goBack()} title={"Back"}></Button>
-      </View>
+      <ScreenFooter Previous={navigation.goBack}/>
     </View>
   );
 };

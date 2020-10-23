@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { ScreenRegistry } from "./ScreenRegistry";
+import { ComponentRegistry } from "./ComponentRegistry";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,13 +18,13 @@ const beachStyles = StyleSheet.create({
   },
 });
 
-export const GetStyle = (screen: ScreenRegistry) => {
-  switch (screen) {
-    case ScreenRegistry.Home:
+export const GetStyle = (component: ComponentRegistry) => {
+  switch (component) {
+    case ComponentRegistry.Home:
       return styles;
-    case ScreenRegistry.Settings:
+    case ComponentRegistry.Settings:
       return styles;
-    case ScreenRegistry.Map:
+    case ComponentRegistry.Map:
       return beachStyles;
     default:
       return styles;

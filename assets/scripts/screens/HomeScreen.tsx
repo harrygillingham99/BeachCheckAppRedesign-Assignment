@@ -1,14 +1,15 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { View, Button, StyleSheet, ScrollView, Text } from "react-native";
-import { GetStyle } from "../styles/styles";
+import { GetStyle } from "../utils/styles";
 import { RootDrawerParams } from "../types/RootDrawerParams";
+import { ScreenRegistry } from "../utils/ScreenRegistry";
 
-const PageTitle: string = "Home";
+const PageId: ScreenRegistry = ScreenRegistry.Home;
 
 type HomeProps = DrawerScreenProps<RootDrawerParams, "Home">;
 
-const styles = GetStyle(PageTitle);
+const styles = GetStyle(PageId);
 
 export const HomeScreen = ({ navigation }: HomeProps) => (
   <View style={{ ...styles.container, flex: 1 }}>

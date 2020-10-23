@@ -1,15 +1,16 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { View, Button, StyleSheet, ScrollView, Text } from "react-native";
-import { GetStyle } from "../styles/styles";
+import { GetStyle } from "../utils/styles";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView from "react-native-maps";
+import { ScreenRegistry } from "../utils/ScreenRegistry";
 
-const PageTitle: string = "BeachMap";
+const PageId: ScreenRegistry = ScreenRegistry.Map;
 
 type BeachMapScreenProps = DrawerScreenProps<RootDrawerParams, "BeachMap">;
 
-const styles = GetStyle(PageTitle);
+const styles = GetStyle(PageId);
 
 export const BeachMap = ({ navigation }: BeachMapScreenProps) => (
   <View style={{ ...styles.container, flex: 1 }}>

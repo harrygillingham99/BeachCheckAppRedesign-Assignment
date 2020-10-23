@@ -2,13 +2,14 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { View, Button, ScrollView, Text } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
-import { GetStyle } from "../styles/styles";
+import { GetStyle } from "../utils/styles";
+import { ScreenRegistry } from "../utils/ScreenRegistry"
 
-const PageTitle = "Settings";
+const PageId : ScreenRegistry = ScreenRegistry.Settings;
 
 type SettingsProps = DrawerScreenProps<RootDrawerParams, "Settings">;
 
-const styles = GetStyle(PageTitle);
+const styles = GetStyle(PageId);
 
 export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
   return (

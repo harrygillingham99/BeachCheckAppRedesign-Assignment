@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Button, View } from 'react-native';
 import { createDrawerNavigator, DrawerScreenProps } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootDrawerParams } from './assets/scripts/types/RootDrawerParams';

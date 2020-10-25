@@ -17,6 +17,6 @@ export const HomeScreen = ({ navigation }: HomeProps) => (
     <ScrollView>
       <Text>Home</Text>
     </ScrollView>
-    <ScreenFooter Previous={navigation.goBack}/>
+    <ScreenFooter goBack={navigation.goBack}/>
   </View>
 );

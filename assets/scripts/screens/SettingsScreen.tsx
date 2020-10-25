@@ -18,7 +18,7 @@ export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
       <ScrollView>
         <Text>Settings</Text>
       </ScrollView>
-      <ScreenFooter Previous={navigation.goBack}/>
+      <ScreenFooter goBack={navigation.goBack}/>
     </View>
   );
 };

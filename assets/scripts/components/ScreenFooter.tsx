@@ -8,11 +8,11 @@ const componentId : ComponentRegistry = ComponentRegistry.Footer;
 const styles = GetStyle(componentId);
 
 interface ScreenFooterProps{
-    Previous: () => void;
+    goBack: () => void;
 }
 
 export const ScreenFooter = (props: ScreenFooterProps) => {
     return(<View style={styles.footer}>
-        <Button onPress={() => props.Previous()} title={"Back"}></Button>
+        <Button onPress={() => props.goBack()} title={"Back"}></Button>
       </View>)
 }

@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { View, Button } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { GetStyle } from "../utils/Styles";
 import { SearchBar } from "react-native-elements";
@@ -40,8 +40,8 @@ export const SearchMap = (props: SearchBarProps) => {
           new MapValues(response.result.latitude, response.result.longitude)
         );
       })
-      .then(() => validationMessage = undefined)
-      .catch(() => validationMessage = "An error occured...");
+      .then(() => (validationMessage = undefined))
+      .catch(() => (validationMessage = "An error occured..."));
   };
 
   return (

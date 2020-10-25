@@ -3,10 +3,10 @@ import React from "react";
 import { View, Button, ScrollView, Text } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { GetStyle } from "../utils/Styles";
-import { ComponentRegistry } from "../utils/ComponentRegistry"
+import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenFooter } from "../components/ScreenFooter";
 
-const componentId : ComponentRegistry = ComponentRegistry.Settings;
+const componentId: ComponentRegistry = ComponentRegistry.Settings;
 
 type SettingsProps = DrawerScreenProps<RootDrawerParams, "Settings">;
 
@@ -18,7 +18,7 @@ export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
       <ScrollView>
         <Text>Settings</Text>
       </ScrollView>
-      <ScreenFooter goBack={navigation.goBack}/>
+      <ScreenFooter goBack={navigation.goBack} />
     </View>
   );
 };

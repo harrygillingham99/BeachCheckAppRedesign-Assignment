@@ -1,7 +1,7 @@
 import React, { ComponentElement } from "react";
 import { View, Button } from "react-native";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/styles";
+import { GetStyle } from "../utils/Styles";
 
 const componentId : ComponentRegistry = ComponentRegistry.Footer;
 

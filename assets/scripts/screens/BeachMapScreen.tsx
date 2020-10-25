@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
-import { View, Button, StyleSheet, ScrollView, Text } from "react-native";
-import { GetStyle } from "../utils/styles";
+import { View, ScrollView, Text } from "react-native";
+import { GetStyle } from "../utils/Styles";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView from "react-native-maps";
 import { ComponentRegistry } from "../utils/ComponentRegistry";

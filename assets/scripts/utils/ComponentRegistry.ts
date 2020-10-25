@@ -2,5 +2,6 @@ export enum ComponentRegistry{
     Home = 1,
     Map = 2,
     Settings = 3,
-    Footer = 4
+    Footer = 4,
+    SearchMap = 5
 }

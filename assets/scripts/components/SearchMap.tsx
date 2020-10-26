@@ -5,6 +5,13 @@ import { GetStyle } from "../utils/Styles";
 import { SearchBar } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
 import { MapValues } from "../types/MapValues";
+import {
+  DefaultLatDelta,
+  DefaultLongDelta,
+  InitialMapLocation,
+  PostcodeRegex,
+  SearchBarMessages,
+} from "../utils/Constants";
 
 const componentId: ComponentRegistry = ComponentRegistry.SearchMap;
 
@@ -13,10 +20,7 @@ var validationMessage: string | undefined;
 const styles = GetStyle(componentId);
 
 const ValidateSearchInput = (input: string): boolean => {
-  //Regex from UK .GOV website https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/488478/Bulk_Data_Transfer_-_additional_validation_valid_from_12_November_2015.pdf
-  const PostcodeExpression = new RegExp(
-    "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))s?[0-9][A-Za-z]{2})"
-  );
+  const PostcodeExpression = new RegExp(PostcodeRegex);
   return PostcodeExpression.test(input);
 };
 
@@ -28,26 +32,34 @@ export const SearchMap = (props: SearchBarProps) => {
   const [search, setSearch] = React.useState<string>("");
 
   const doSearch = async () => {
+    if (search === "") {
+      props.UpdateMap(InitialMapLocation);
+    }
     if (!ValidateSearchInput(search)) {
       setSearch("");
-      validationMessage = "Enter a valid postcode";
+      validationMessage = SearchBarMessages.ValidationError;
       return;
     }
 
     GetLocation(search)
       .then((response) => {
         props.UpdateMap(
-          new MapValues(response.result.latitude, response.result.longitude)
+          new MapValues(
+            response.result.latitude,
+            response.result.longitude,
+            DefaultLatDelta,
+            DefaultLongDelta
+          )
         );
       })
       .then(() => (validationMessage = undefined))
-      .catch(() => (validationMessage = "An error occured..."));
+      .catch(() => (validationMessage = SearchBarMessages.Exception));
   };
 
   return (
     <View style={styles.footer}>
       <SearchBar
-        placeholder={validationMessage ?? "Type Here..."}
+        placeholder={validationMessage ?? SearchBarMessages.Default}
         onChangeText={setSearch}
         value={search}
         onSubmitEditing={doSearch}

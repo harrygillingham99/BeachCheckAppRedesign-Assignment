@@ -3,10 +3,10 @@ export default class FetchWrapper {
     return new Promise((resolve) => {
       fetch(url, { method: "GET" })
         .then((response) => response.json())
-        .then((body) => {
-          resolve(body);
+        .then((jsonResponse) => {
+          resolve(jsonResponse);
         })
-        .catch((x) => console.log("Fetch failed! " + x));
+        .catch((exception) => console.log("Fetch failed! " + exception));
     });
   }
 }

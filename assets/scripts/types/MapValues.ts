@@ -1,7 +1,7 @@
 export class MapValues {
-  constructor(latitude: number, longditude: number) {
+  constructor(latitude: number, longditude: number, latDelta : number, longDelta : number) {
     (this.latitude = latitude), (this.longitude = longditude);
-    (this.latitudeDelta = 0.0922), (this.longitudeDelta = 0.0922);
+    (this.latitudeDelta = latDelta), (this.longitudeDelta = longDelta);
   }
   latitude: number;
   longitude: number;

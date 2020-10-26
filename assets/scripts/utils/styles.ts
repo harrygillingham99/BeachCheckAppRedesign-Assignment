@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
 });
 
 const beachStyles = StyleSheet.create({
-  ...styles,
   beachMap: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
@@ -25,7 +24,7 @@ export const GetStyle = (component: ComponentRegistry) => {
     case ComponentRegistry.Settings:
       return styles;
     case ComponentRegistry.Map:
-      return beachStyles;
+      return StyleSheet.flatten([styles, beachStyles]);
     default:
       return styles;
   }

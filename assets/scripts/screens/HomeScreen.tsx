@@ -13,7 +13,7 @@ type HomeProps = DrawerScreenProps<RootDrawerParams, "Home">;
 const styles = GetStyle(componentId);
 
 export const HomeScreen = ({ navigation }: HomeProps) => (
-  <View style={{ ...styles.container, flex: 1 }}>
+  <View style={[styles.container, {flex: 1} ]}>
     <ScrollView>
       <Text>Home</Text>
     </ScrollView>

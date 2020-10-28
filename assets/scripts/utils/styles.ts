@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, StyleProp } from "react-native";
 import { ComponentRegistry } from "./ComponentRegistry";
 
 const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ const beachStyles = StyleSheet.create({
   },
 });
 
-export const GetStyle = (component: ComponentRegistry) => {
+export const GetStyle = (component: ComponentRegistry)  => {
   switch (component) {
     case ComponentRegistry.Home:
       return styles;

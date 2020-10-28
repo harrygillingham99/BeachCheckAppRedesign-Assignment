@@ -15,33 +15,38 @@ import {
 
 const componentId: ComponentRegistry = ComponentRegistry.SearchMap;
 
-var validationMessage: string | undefined;
-
 const styles = GetStyle(componentId);
 
-const ValidateSearchInput = (input: string): boolean => {
+const ValidateSearchInput = (input?: string): boolean => {
   const PostcodeExpression = new RegExp(PostcodeRegex);
-  return PostcodeExpression.test(input);
+  return PostcodeExpression.test(input ?? "");
 };
 
 interface SearchBarProps {
   UpdateMap: React.Dispatch<React.SetStateAction<MapValues>>;
 }
 
-export const SearchMap = (props: SearchBarProps) => {
-  const [search, setSearch] = React.useState<string>("");
+interface SearchBarState{
+    search? : string,
+    validationMessage? : string
+}
 
-  const doSearch = async () => {
-    if (search === "") {
+export const SearchMap = (props: SearchBarProps) => {
+  const [state, setState] = React.useState<SearchBarState>({search : '', validationMessage : SearchBarMessages.Default});
+
+  const SetSearch = (searchText : string) => setState({search : searchText});
+
+  const doSearch = () => {
+    if (state.search === "") {
       props.UpdateMap(InitialMapLocation);
     }
-    if (!ValidateSearchInput(search)) {
-      setSearch("");
-      validationMessage = SearchBarMessages.ValidationError;
+
+    if (!ValidateSearchInput(state.search)) {
+      setState({validationMessage : SearchBarMessages.ValidationError})
       return;
     }
 
-    GetLocation(search)
+    GetLocation(state.search)
       .then((response) => {
         props.UpdateMap(
           new MapValues(
@@ -52,16 +57,16 @@ export const SearchMap = (props: SearchBarProps) => {
           )
         );
       })
-      .then(() => (validationMessage = undefined))
-      .catch(() => (validationMessage = SearchBarMessages.Exception));
+      .then(() => setState({validationMessage : undefined}))
+      .catch(() => setState({validationMessage : SearchBarMessages.Exception}))
   };
 
   return (
     <View style={styles.footer}>
       <SearchBar
-        placeholder={validationMessage ?? SearchBarMessages.Default}
-        onChangeText={setSearch}
-        value={search}
+        placeholder={state.validationMessage ?? SearchBarMessages.Default}
+        onChangeText={SetSearch}
+        value={state.search}
         onSubmitEditing={doSearch}
       ></SearchBar>
     </View>

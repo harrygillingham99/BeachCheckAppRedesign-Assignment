@@ -4,7 +4,6 @@ import { View, Button, ScrollView, Text } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { GetStyle } from "../utils/Styles";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { ScreenFooter } from "../components/ScreenFooter";
 import { ScreenHeader } from "../components/ScreenHeader";
 
 const componentId: ComponentRegistry = ComponentRegistry.Settings;
@@ -21,7 +20,6 @@ export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
       <ScrollView>
         <Text>Settings</Text>
       </ScrollView>
-      <ScreenFooter goBack={navigation.goBack} />
     </View>
     </>
   );

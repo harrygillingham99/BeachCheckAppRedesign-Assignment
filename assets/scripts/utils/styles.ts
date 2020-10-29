@@ -3,7 +3,7 @@ import { ComponentRegistry } from "./ComponentRegistry";
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: 0,
   },
   footer: {
     marginBottom: 20,
@@ -17,7 +17,7 @@ const beachStyles = StyleSheet.create({
   },
 });
 
-export const GetStyle = (component: ComponentRegistry)  => {
+export const GetStyle = (component: ComponentRegistry) => {
   switch (component) {
     case ComponentRegistry.Home:
       return styles;

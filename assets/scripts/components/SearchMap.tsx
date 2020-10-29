@@ -26,23 +26,27 @@ interface SearchBarProps {
   UpdateMap: React.Dispatch<React.SetStateAction<MapValues>>;
 }
 
-interface SearchBarState{
-    search? : string,
-    validationMessage? : string
+interface SearchBarState {
+  search?: string;
+  validationMessage?: string;
 }
 
 export const SearchMap = (props: SearchBarProps) => {
-  const [state, setState] = React.useState<SearchBarState>({search : '', validationMessage : SearchBarMessages.Default});
+  const [state, setState] = React.useState<SearchBarState>({
+    search: "",
+    validationMessage: SearchBarMessages.Default,
+  });
 
-  const SetSearch = (searchText : string) => setState({search : searchText});
+  const SetSearch = (searchText: string) => setState({ search: searchText });
 
   const doSearch = () => {
+    console.log("!");
     if (state.search === "") {
       props.UpdateMap(InitialMapLocation);
     }
 
     if (!ValidateSearchInput(state.search)) {
-      setState({validationMessage : SearchBarMessages.ValidationError})
+      setState({ validationMessage: SearchBarMessages.ValidationError });
       return;
     }
 
@@ -57,8 +61,10 @@ export const SearchMap = (props: SearchBarProps) => {
           )
         );
       })
-      .then(() => setState({validationMessage : undefined}))
-      .catch(() => setState({validationMessage : SearchBarMessages.Exception}))
+      .then(() => setState({ validationMessage: undefined }))
+      .catch(() =>
+        setState({ validationMessage: SearchBarMessages.Exception })
+      );
   };
 
   return (

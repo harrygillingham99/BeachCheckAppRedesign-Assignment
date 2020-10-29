@@ -5,6 +5,7 @@ import { RootDrawerParams } from "./assets/scripts/types/RootDrawerParams";
 import { HomeScreen } from "./assets/scripts/screens/HomeScreen";
 import { SettingsScreen } from "./assets/scripts/screens/SettingsScreen";
 import { BeachMap } from "./assets/scripts/screens/BeachMapScreen";
+import { DetailedBeach } from "./assets/scripts/screens/DetailedBeachScreen";
 
 const Drawer = createDrawerNavigator<RootDrawerParams>();
 
@@ -13,8 +14,17 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="BeachMap" component={BeachMap} />
+        <Drawer.Screen
+          name="BeachMap"
+          component={BeachMap}
+          options={{ title: "Beach Map" }}
+        />
         <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen
+          name="DetailedBeach"
+          options={{ title: "" }}
+          component={DetailedBeach}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

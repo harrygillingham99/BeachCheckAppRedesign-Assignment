@@ -5,6 +5,7 @@ import { RootDrawerParams } from "../types/RootDrawerParams";
 import { GetStyle } from "../utils/Styles";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenFooter } from "../components/ScreenFooter";
+import { ScreenHeader } from "../components/ScreenHeader";
 
 const componentId: ComponentRegistry = ComponentRegistry.Settings;
 
@@ -14,11 +15,14 @@ const styles = GetStyle(componentId);
 
 export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
   return (
+    <>
+    <ScreenHeader leftComponentOnPress={navigation.openDrawer} title={componentId}></ScreenHeader>
     <View style={{ ...styles.container, flex: 1 }}>
       <ScrollView>
         <Text>Settings</Text>
       </ScrollView>
       <ScreenFooter goBack={navigation.goBack} />
     </View>
+    </>
   );
 };

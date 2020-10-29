@@ -1,7 +1,12 @@
-export enum ComponentRegistry{
-    Home = 1,
-    Map = 2,
-    Settings = 3,
-    Footer = 4,
-    SearchMap = 5
+import { RowItem } from "../components/RowItem";
+
+export enum ComponentRegistry {
+  Home = "Home",
+  Map = "Map",
+  Settings = "Settings",
+  Footer = "Footer",
+  SearchMap = "SearchMap",
+  Header = "Header",
+  RowItem = "RowItem",
+  DetailsScreen = "DetailsScreen",
 }

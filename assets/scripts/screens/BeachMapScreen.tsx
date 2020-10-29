@@ -9,6 +9,7 @@ import { ScreenFooter } from "../components/ScreenFooter";
 import { SearchMap } from "../components/SearchMap";
 import { MapValues } from "../types/MapValues";
 import { InitialMapLocation } from "../utils/Constants";
+import { ScreenHeader } from "../components/ScreenHeader";
 
 const componentId: ComponentRegistry = ComponentRegistry.Map;
 
@@ -18,21 +19,43 @@ const styles = GetStyle(componentId);
 
 export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
   const [location, setLocation] = React.useState<MapValues>(InitialMapLocation);
-  console.log(location);
+  const setMapLocation = ({
+    latitude,
+    longitude,
+    latitudeDelta,
+    longitudeDelta,
+  }: MapValues) =>
+    setLocation({
+      latitude: latitude,
+      longitude: longitude,
+      latitudeDelta: latitudeDelta,
+      longitudeDelta: longitudeDelta,
+    });
+
   return (
-    <View style={{ ...styles.container, flex: 1 }}>
+    <>
+      <ScreenHeader
+        leftComponentOnPress={navigation.openDrawer}
+        title={componentId}
+      ></ScreenHeader>
+      <SearchMap UpdateMap={setLocation} />
       <ScrollView>
-        <Text>Map</Text>
-        <SearchMap UpdateMap={setLocation} />
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           style={styles.beachMap}
           initialRegion={InitialMapLocation}
-          region={new MapValues(location.latitude, location.longitude, location.latitudeDelta, location.longitudeDelta)}
-          onRegionChangeComplete={setLocation}
+          region={
+            new MapValues(
+              location.latitude,
+              location.longitude,
+              location.latitudeDelta,
+              location.longitudeDelta
+            )
+          }
+          onRegionChangeComplete={setMapLocation}
         ></MapView>
       </ScrollView>
-      <ScreenFooter goBack={navigation.goBack} />
-    </View>
+      <ScreenFooter goBack={navigation.goBack}></ScreenFooter>
+    </>
   );
 };

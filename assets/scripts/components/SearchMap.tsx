@@ -68,7 +68,7 @@ export const SearchMap = (props: SearchBarProps) => {
   };
 
   return (
-    <View style={styles.footer}>
+    <View>
       <SearchBar
         placeholder={state.validationMessage ?? SearchBarMessages.Default}
         onChangeText={SetSearch}

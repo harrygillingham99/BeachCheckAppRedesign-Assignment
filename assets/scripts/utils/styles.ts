@@ -14,6 +14,8 @@ const beachStyles = StyleSheet.create({
   beachMap: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
+    marginBottom : Dimensions.get("window").height * 0.05, //any closer to the bottom and the map will just infinitely scroll down on IOS 
+    flex : 1
   },
 });
 
@@ -24,7 +26,7 @@ export const GetStyle = (component: ComponentRegistry) => {
     case ComponentRegistry.Settings:
       return styles;
     case ComponentRegistry.Map:
-      return StyleSheet.flatten([styles, beachStyles]);
+      return beachStyles;
     default:
       return styles;
   }

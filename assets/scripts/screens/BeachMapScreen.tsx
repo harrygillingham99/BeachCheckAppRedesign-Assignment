@@ -39,23 +39,20 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
         title={componentId}
       ></ScreenHeader>
       <SearchMap UpdateMap={setLocation} />
-      <ScrollView>
-        <MapView
-          provider={MapView.PROVIDER_GOOGLE}
-          style={styles.beachMap}
-          initialRegion={InitialMapLocation}
-          region={
-            new MapValues(
-              location.latitude,
-              location.longitude,
-              location.latitudeDelta,
-              location.longitudeDelta
-            )
-          }
-          onRegionChangeComplete={setMapLocation}
-        ></MapView>
-      </ScrollView>
-      <ScreenFooter goBack={navigation.goBack}></ScreenFooter>
+      <MapView
+        provider={MapView.PROVIDER_GOOGLE}
+        style={styles.beachMap}
+        initialRegion={InitialMapLocation}
+        region={
+          new MapValues(
+            location.latitude,
+            location.longitude,
+            location.latitudeDelta,
+            location.longitudeDelta
+          )
+        }
+        onRegionChangeComplete={setMapLocation}
+      ></MapView>
     </>
   );
 };

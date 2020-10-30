@@ -17,9 +17,19 @@ const componentId: ComponentRegistry = ComponentRegistry.SearchMap;
 
 const styles = GetStyle(componentId);
 
-const ValidateSearchInput = (input?: string): boolean => {
+const ValidateSearchInput = (input?: string): String | undefined => {
   const PostcodeExpression = new RegExp(PostcodeRegex);
-  return PostcodeExpression.test(input ?? "");
+
+  if (input === null || input === undefined) {
+    return undefined;
+  }
+
+  input = input.replaceAll(" ", "");
+
+  if (PostcodeExpression.test(input ?? "") === false) {
+    return undefined;
+  }
+  return input;
 };
 
 interface SearchBarProps {
@@ -31,7 +41,7 @@ interface SearchBarState {
   validationMessage?: string;
 }
 
-export const SearchMap = (props: SearchBarProps) => {
+export const SearchMap = ({UpdateMap}: SearchBarProps) => {
   const [state, setState] = React.useState<SearchBarState>({
     search: "",
     validationMessage: SearchBarMessages.Default,
@@ -41,17 +51,19 @@ export const SearchMap = (props: SearchBarProps) => {
 
   const doSearch = () => {
     if (state.search === "") {
-      props.UpdateMap(InitialMapLocation);
+      UpdateMap(InitialMapLocation);
     }
 
-    if (!ValidateSearchInput(state.search)) {
+    const searchInput = ValidateSearchInput(state.search);
+
+    if (searchInput === undefined) {
       setState({ validationMessage: SearchBarMessages.ValidationError });
       return;
     }
 
     GetLocation(state.search)
       .then((response) => {
-        props.UpdateMap(
+        UpdateMap(
           new MapValues(
             response.result.latitude,
             response.result.longitude,

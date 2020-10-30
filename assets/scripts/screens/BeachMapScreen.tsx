@@ -16,7 +16,7 @@ type BeachMapScreenProps = DrawerScreenProps<RootDrawerParams, "BeachMap">;
 const styles = GetStyle(componentId);
 
 export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
-  const mapState = MapContainer.useContainer();
+  const { location, setLocation } = MapContainer.useContainer();
 
   const setMapLocation = ({
     latitude,
@@ -24,25 +24,25 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
     latitudeDelta,
     longitudeDelta,
   }: MapValues) =>
-    mapState.setLocation({
+    setLocation({
       latitude: latitude,
       longitude: longitude,
       latitudeDelta: latitudeDelta,
       longitudeDelta: longitudeDelta,
     });
-    console.log(`latitude: ${mapState.location.latitude},`)
-    console.log(`longitude: ${mapState.location.longitude},`)
+  console.log(`latitude: ${location.latitude},`);
+  console.log(`longitude: ${location.longitude},`);
   return (
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
         title={componentId}
       ></ScreenHeader>
-      <SearchMap UpdateMap={mapState.setLocation} />
+      <SearchMap UpdateMap={setLocation} />
       <MapView
         provider={MapView.PROVIDER_GOOGLE}
         style={styles.beachMap}
-        region={mapState.location}
+        region={location}
         onRegionChangeComplete={setMapLocation}
       ></MapView>
     </>

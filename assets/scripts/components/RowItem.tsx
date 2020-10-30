@@ -1,9 +1,8 @@
 import * as React from "react";
-import { MockBeachItem } from "../utils/Constants";
-import { Text } from "react-native";
+import { BeachRiskLevel } from "../utils/Constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/styles";
+import { GetColourForRiskLevel, GetStyle } from "../utils/styles";
 import { Card } from "react-native-elements";
 
 const componentId: ComponentRegistry = ComponentRegistry.RowItem;
@@ -11,15 +10,15 @@ const componentId: ComponentRegistry = ComponentRegistry.RowItem;
 const styles = GetStyle(componentId);
 
 interface RowItemProps {
-  latitude: number;
-  longditude: number;
   beachName: string;
+  riskLevel: BeachRiskLevel;
   onPress: () => void;
 }
 
-export const RowItem = ({ beachName, onPress }: RowItemProps) => {
+export const RowItem = ({ beachName, riskLevel, onPress }: RowItemProps) => {
+  const riskColour = GetColourForRiskLevel(riskLevel);
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={riskColour.rowItem}>
       <Card>
         <Card.Title>{beachName}</Card.Title>
       </Card>

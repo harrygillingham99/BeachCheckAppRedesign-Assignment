@@ -1,6 +1,5 @@
 import * as React from "react";
 import { DrawerScreenProps } from "@react-navigation/drawer";
-import { CommonActions } from "@react-navigation/native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
@@ -23,10 +22,10 @@ export const DetailedBeach = ({
   navigation,
   route,
 }: DetailedBeachScreenProps) => {
-  const mapState = MapContainer.useContainer();
+  const {setLocation} = MapContainer.useContainer();
   const { beachName, latitude, longditude } = route.params;
   const SetBeach = () => {
-    mapState.setLocation(new MapValues(latitude, longditude));
+    setLocation(new MapValues(latitude, longditude));
     navigation.navigate("BeachMap");
   };
   return (

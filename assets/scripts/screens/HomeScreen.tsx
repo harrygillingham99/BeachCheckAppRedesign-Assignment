@@ -7,6 +7,7 @@ import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { MockBeachItem, MockData } from "../utils/Constants";
 import { RowItem } from "../components/RowItem";
+
 const componentId: ComponentRegistry = ComponentRegistry.Home;
 
 type HomeProps = DrawerScreenProps<RootDrawerParams, "Home">;
@@ -26,19 +27,18 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
         title={"BCP Beach Check"}
-      ></ScreenHeader>
+      />
       <FlatList
         data={MockData}
         renderItem={({ item }) => (
           <RowItem
             beachName={item.beachName}
-            latitude={item.latitude}
-            longditude={item.longitude}
+            riskLevel={item.riskLevel}
             onPress={() => onItemPress(item)}
           />
         )}
         keyExtractor={(item) => item.beachKey.toString()}
-      ></FlatList>
+      />
     </>
   );
 };

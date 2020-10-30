@@ -2,7 +2,7 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { View, Button, ScrollView, Text } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
-import { GetStyle } from "../utils/Styles";
+import { GetStyle } from "../utils/styles";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
 

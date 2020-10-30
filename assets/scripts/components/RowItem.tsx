@@ -3,21 +3,26 @@ import { MockBeachItem } from "../utils/Constants";
 import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/Styles";
+import { GetStyle } from "../utils/styles";
+import { Card } from "react-native-elements";
 
 const componentId: ComponentRegistry = ComponentRegistry.RowItem;
 
 const styles = GetStyle(componentId);
 
 interface RowItemProps {
-  item: MockBeachItem;
+  latitude: number;
+  longditude: number;
+  beachName: string;
   onPress: () => void;
 }
 
-export const RowItem = ({ item, onPress }: RowItemProps) => {
+export const RowItem = ({ beachName, onPress }: RowItemProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text>{item.beachName}</Text>
+      <Card>
+        <Card.Title>{beachName}</Card.Title>
+      </Card>
     </TouchableOpacity>
   );
 };

@@ -1,7 +1,7 @@
 import { Header, Icon } from "react-native-elements";
 import * as React from "react";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/Styles";
+import { GetStyle } from "../utils/styles";
 
 const componentId: ComponentRegistry = ComponentRegistry.Header;
 

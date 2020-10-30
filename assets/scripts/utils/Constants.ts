@@ -27,7 +27,8 @@ export const InitialMapLocation = {
 export interface MockBeachItem {
   beachKey: number;
   beachName: string;
-  mapLocation: MapValues;
+  latitude: number;
+  longitude: number;
   mapPolygon: Polygon;
 }
 
@@ -35,25 +36,43 @@ export const MockData: MockBeachItem[] = [
   {
     beachKey: 1,
     beachName: "Branksome Chine",
-    mapLocation: new MapValues(1, 1, 1, 1),
+    latitude: 50.706461814683735,
+    longitude: -1.909446157515049,
     mapPolygon: new Polygon({ coordinates: [{ latitude: 0, longitude: 0 }] }),
   },
   {
     beachKey: 2,
-    beachName: "Alum Chine",
-    mapLocation: new MapValues(1, 1, 1, 1),
+    beachName: "Sandbanks Beach",
+    latitude: 50.6882118692494,
+    longitude: -1.937926858663559,
     mapPolygon: new Polygon({ coordinates: [{ latitude: 0, longitude: 0 }] }),
   },
   {
     beachKey: 3,
     beachName: "Bournemouth Beach",
-    mapLocation: new MapValues(1, 1, 1, 1),
+    latitude: 50.71518479061355,
+    longitude: -1.8755205720663068,
     mapPolygon: new Polygon({ coordinates: [{ latitude: 0, longitude: 0 }] }),
   },
   {
     beachKey: 4,
     beachName: "Boscombe Beach",
-    mapLocation: new MapValues(1, 1, 1, 1),
+    latitude: 50.71910878328881,
+    longitude: -1.8430524319410324,
+    mapPolygon: new Polygon({ coordinates: [{ latitude: 0, longitude: 0 }] }),
+  },
+  {
+    beachKey: 5,
+    beachName: "Southbourne Beach",
+    latitude: 50.719336973998466,
+    longitude: -1.7928347736597061,
+    mapPolygon: new Polygon({ coordinates: [{ latitude: 0, longitude: 0 }] }),
+  },
+  {
+    beachKey: 6,
+    beachName: "Hengistbury Head",
+    latitude: 50.71507079143355,
+    longitude: -1.759541854262352,
     mapPolygon: new Polygon({ coordinates: [{ latitude: 0, longitude: 0 }] }),
   },
 ];

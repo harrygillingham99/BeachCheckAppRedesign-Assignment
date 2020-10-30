@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/Styles";
+import { GetStyle } from "../utils/styles";
 import { SearchBar } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
 import { MapValues } from "../types/MapValues";
@@ -40,7 +40,6 @@ export const SearchMap = (props: SearchBarProps) => {
   const SetSearch = (searchText: string) => setState({ search: searchText });
 
   const doSearch = () => {
-    console.log("!");
     if (state.search === "") {
       props.UpdateMap(InitialMapLocation);
     }

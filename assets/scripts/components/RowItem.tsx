@@ -2,7 +2,7 @@ import * as React from "react";
 import { BeachRiskLevel } from "../utils/Constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetColourForRiskLevel, GetStyle } from "../utils/styles";
+import { GetColourForRiskLevel, GetStyle } from "../utils/Styles";
 import { Card } from "react-native-elements";
 
 const componentId: ComponentRegistry = ComponentRegistry.RowItem;

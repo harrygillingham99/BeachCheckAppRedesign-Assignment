@@ -3,7 +3,7 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/styles";
+import { GetStyle } from "../utils/Styles";
 import { Card, Button } from "react-native-elements";
 import { Text } from "react-native";
 import { MapValues } from "../types/MapValues";

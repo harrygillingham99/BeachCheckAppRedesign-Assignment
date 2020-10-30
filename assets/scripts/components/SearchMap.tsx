@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/styles";
+import { GetStyle } from "../utils/Styles";
 import { SearchBar } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
 import { MapValues } from "../types/MapValues";
@@ -24,7 +24,7 @@ const ValidateSearchInput = (input?: string): String | undefined => {
     return undefined;
   }
 
-  input = input.replaceAll(" ", "");
+  input = input.replace(' ', '');
 
   if (PostcodeExpression.test(input ?? "") === false) {
     return undefined;

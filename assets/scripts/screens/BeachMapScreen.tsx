@@ -1,6 +1,6 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
-import { GetStyle } from "../utils/styles";
+import { GetStyle } from "../utils/Styles";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView from "react-native-maps";
 import { ComponentRegistry } from "../utils/ComponentRegistry";

@@ -7,11 +7,13 @@ import { SettingsScreen } from "./assets/scripts/screens/SettingsScreen";
 import { BeachMap } from "./assets/scripts/screens/BeachMapScreen";
 import { DetailedBeach } from "./assets/scripts/screens/DetailedBeachScreen";
 import { MapContainer } from "./assets/scripts/state/MapState";
+import { SettingsContainer } from "./assets/scripts/state/SettingsState";
 
 const Drawer = createDrawerNavigator<RootDrawerParams>();
 
 export default function App() {
   return (
+    <SettingsContainer.Provider>
     <MapContainer.Provider>
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
@@ -30,5 +32,6 @@ export default function App() {
         </Drawer.Navigator>
       </NavigationContainer>
     </MapContainer.Provider>
+    </SettingsContainer.Provider>
   );
 }

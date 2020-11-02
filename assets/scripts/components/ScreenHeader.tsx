@@ -1,11 +1,8 @@
 import { Header, Icon } from "react-native-elements";
 import * as React from "react";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
-import { GetStyle } from "../utils/Styles";
 
 const componentId: ComponentRegistry = ComponentRegistry.Header;
-
-const styles = GetStyle(componentId);
 
 interface ScreenHeaderProps {
   leftComponentOnPress: () => void;

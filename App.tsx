@@ -9,6 +9,10 @@ import { DetailedBeach } from "./assets/scripts/screens/DetailedBeachScreen";
 import { MapContainer } from "./assets/scripts/state/MapState";
 import { SettingsContainer } from "./assets/scripts/state/SettingsState";
 
+/* 
+This is the entry point for the application.
+*/
+
 const Drawer = createDrawerNavigator<RootDrawerParams>();
 
 export default function App() {

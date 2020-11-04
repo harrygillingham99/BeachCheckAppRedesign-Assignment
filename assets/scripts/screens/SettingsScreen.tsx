@@ -4,17 +4,20 @@ import { View, Button, ScrollView, Text, Switch } from "react-native";
 import Slider from "@react-native-community/slider";
 import DropDownPicker from "react-native-dropdown-picker";
 import { RootDrawerParams } from "../types/RootDrawerParams";
-import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { ListItem } from "react-native-elements";
 import { useContainer } from "unstated-next";
 import { SettingsContainer } from "../state/SettingsState";
 import { MapTypes } from "../utils/Constants";
 
-const componentId: ComponentRegistry = ComponentRegistry.Settings;
+/* This is the settings screen which is referenced in the navigation stack. */
 
 type SettingsProps = DrawerScreenProps<RootDrawerParams, "Settings">;
 
+/* 
+Seemingly pointless but nessesary to make typescript happy 
+and convert the ReactText object supplied by DropDownPicker back to a MapType
+*/
 const GetMapType = (text: React.ReactText): MapTypes => {
   switch (text) {
     case MapTypes.hybrid:
@@ -34,21 +37,23 @@ export const SettingsScreen = ({ navigation }: SettingsProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={<Text>{componentId}</Text>}
+        centerComponent={<Text>Settings</Text>}
       ></ScreenHeader>
       <View style={{ flex: 1 }}>
         <ListItem>
-          <Text>Polygon Opacity: </Text>
+          <Text>Polygon Opacity:</Text>
           <Slider
-            style={{ width: 200, height: 40 }}
+            style={{ width: 180, height: 40 }}
             minimumTrackTintColor="#FFFFFF"
             maximumTrackTintColor="#000000"
             minimumValue={0}
             maximumValue={1}
+            value={settings.polygonOpacity}
             onSlidingComplete={(value) =>
               setSettings({ polygonOpacity: value })
             }
           ></Slider>
+          <Text>{(Number(settings.polygonOpacity) * 100).toFixed(0)}%</Text>
         </ListItem>
         <ListItem>
           <Text>Map View:</Text>

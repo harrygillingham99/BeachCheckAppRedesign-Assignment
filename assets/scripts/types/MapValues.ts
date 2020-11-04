@@ -1,4 +1,8 @@
 import { DefaultLatDelta, DefaultLongDelta } from "../utils/Constants";
+/* 
+This is a custom implementation of the 'Reigon' class provided by react-native-maps, 
+I opted to make the delta values optional as defaulting them in here seems cleaner
+*/
 
 export class MapValues {
   constructor(

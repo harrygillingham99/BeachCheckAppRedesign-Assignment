@@ -8,6 +8,10 @@ import {
 import { SettingsContainer } from "../state/SettingsState";
 import { BeachRiskLevel } from "./Constants";
 
+/* 
+This is another constants file but with all styling related functions and constants.
+*/
+
 export const GetColourForRiskLevel = (
   risk?: BeachRiskLevel,
   opaque = true

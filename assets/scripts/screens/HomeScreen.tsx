@@ -2,13 +2,12 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { FlatList, Image } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
-import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { MockData } from "../utils/Constants";
 import { RowItem } from "../components/RowItem";
 import { BCPLogo, HeaderLogoStyles } from "../utils/Styles";
 
-const componentId: ComponentRegistry = ComponentRegistry.Home;
+/* This is the home screen which is referenced in the navigation stack. */
 
 type HomeProps = DrawerScreenProps<RootDrawerParams, "Home">;
 
@@ -17,7 +16,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={
+        centerComponent={
           <Image
             source={BCPLogo}
             style={HeaderLogoStyles}

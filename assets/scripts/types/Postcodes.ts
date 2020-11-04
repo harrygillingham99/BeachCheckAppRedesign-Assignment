@@ -1,3 +1,7 @@
+/* 
+These are auto generated intefaces for the response object from postcodes.io
+*/
+
 //Created using Json2ts.com using postcodes.io endpoint
 interface Codes {
   admin_district: string;

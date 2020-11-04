@@ -1,6 +1,5 @@
 import React from "react";
 import { View, FlatList } from "react-native";
-import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { SearchBar } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
 import { MapValues } from "../types/MapValues";
@@ -16,8 +15,13 @@ import {
 import { MapContainer } from "../state/MapState";
 import { RowItem } from "./RowItem";
 
-const componentId: ComponentRegistry = ComponentRegistry.SearchMap;
+/* 
+This is a custom search component used in the map screen. It will filter a flat list of beaches as the user searches and will search by postcode using Locator.ts when enter is pressed.    
+*/
 
+/* 
+This method will validate and attempt to clean a postcode input before calling the api. 
+*/
 const ValidateSearchInput = (input?: string): String | undefined => {
   const PostcodeExpression = new RegExp(PostcodeRegex);
 
@@ -34,7 +38,7 @@ const ValidateSearchInput = (input?: string): String | undefined => {
 };
 
 interface SearchBarProps {
-  UpdateMap: React.Dispatch<React.SetStateAction<MapValues>>;
+  UpdateMap: React.Dispatch<React.SetStateAction<MapValues>>; // a function reference to update the location state for the map
 }
 
 interface SearchBarState {
@@ -54,10 +58,18 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
   const SetSearch = (searchText: string) => {
     setState({
       search: searchText,
-      listFilterData: searchText == "" ? [] : MockData.filter((x) => x.beachName.includes(searchText)),
+      listFilterData:
+        searchText == ""
+          ? []
+          : MockData.filter((x) => x.beachName.includes(searchText)), // if there is no search text don't display any items
     });
   };
 
+  /* 
+  This method is called on enter being pressed from the search bar.
+  It uses GetLocation from Locator.ts to call postcodes.io to get latitude and longitude
+  Then updates the map location in state with those values
+  */
   const doSearch = () => {
     if (state.search === "") {
       setState({ listFilterData: [] });
@@ -88,6 +100,11 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
       );
   };
 
+  /* 
+  This method is called when a beach row item is selected from the search. 
+  It will use the beachKey associated to the row item to resolve the location 
+  from MockData. Then set the map location state to these values.
+  */
   const onSearchItemPress = (key: number) => {
     const { latitude, longitude } =
       MockData.find((x) => x.beachKey == key) ?? InitialMapLocation;

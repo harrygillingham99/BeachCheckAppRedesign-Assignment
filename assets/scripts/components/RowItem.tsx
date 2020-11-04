@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BeachRiskLevel } from "../utils/Constants";
-import { ComponentRegistry } from "../utils/ComponentRegistry";
 import {
   CardSubtitleStyles,
   GetColourForRiskLevel,
@@ -9,7 +8,10 @@ import {
 import { Card, Text } from "react-native-elements";
 import { TouchableOpacity } from "react-native";
 
-const componentId: ComponentRegistry = ComponentRegistry.RowItem;
+/* 
+This is a custom RowItem component used by the iterator in the FlatLists in this application, 
+it has variable styles based on what params are passed in. 
+*/
 
 interface RowItemProps {
   beachName: string;

@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 import { BeachRiskLevel } from "./Constants";
 
-export const GetColourForRiskLevel = (risk?: BeachRiskLevel) : string  => {
+export const GetColourForRiskLevel = (risk?: BeachRiskLevel): string => {
   switch (risk) {
     case BeachRiskLevel.VeryLow:
       return "blue";
@@ -14,13 +14,15 @@ export const GetColourForRiskLevel = (risk?: BeachRiskLevel) : string  => {
     case BeachRiskLevel.VeryHigh:
       return "red";
     default:
-      return "black"
+      return "black";
   }
 };
 
-export const beachMapStyles = {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-    marginBottom: Dimensions.get("window").height * 0.05, //any closer to the bottom and the map will just infinitely scroll down on IOS
-    flex: 1
-  }
+export const BeachMapStyles = {
+  width: Dimensions.get("window").width,
+  height: Dimensions.get("window").height,
+  marginBottom: Dimensions.get("window").height * 0.05, //any closer to the bottom and the map will just infinitely scroll down on IOS
+  flex: 1,
+};
+
+export const HeaderLogoStyles = { height: 45, width: 45, marginBottom: 5 };

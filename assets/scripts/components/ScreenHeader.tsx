@@ -6,14 +6,16 @@ const componentId: ComponentRegistry = ComponentRegistry.Header;
 
 interface ScreenHeaderProps {
   leftComponentOnPress: () => void;
-  title: string;
+  title: React.ReactElement;
   showBack?: boolean;
+  rightComponent?: React.ReactElement
 }
 
 export const ScreenHeader = ({
   leftComponentOnPress,
   title,
   showBack = false,
+  rightComponent
 }: ScreenHeaderProps) => {
   return (
     <Header
@@ -23,7 +25,8 @@ export const ScreenHeader = ({
           onPress={leftComponentOnPress}
         />
       }
-      centerComponent={{ text: title }}
+      rightComponent={rightComponent}
+      centerComponent={title}
     ></Header>
   );
 };

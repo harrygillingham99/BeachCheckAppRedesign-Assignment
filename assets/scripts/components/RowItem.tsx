@@ -3,7 +3,7 @@ import { BeachRiskLevel } from "../utils/Constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { GetColourForRiskLevel } from "../utils/Styles";
-import { Card } from "react-native-elements";
+import { Card, Text } from "react-native-elements";
 
 const componentId: ComponentRegistry = ComponentRegistry.RowItem;
 
@@ -15,9 +15,13 @@ interface RowItemProps {
 
 export const RowItem = ({ beachName, riskLevel, onPress }: RowItemProps) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{backgroundColor : GetColourForRiskLevel(riskLevel)}}>
+    <TouchableOpacity onPress={onPress}>
       <Card>
-        <Card.Title>{beachName}</Card.Title>
+      <Card.Title>{beachName}</Card.Title>
+        <Card.Divider/>
+        <Card.FeaturedSubtitle style={{textAlign: "center"}}>
+          <Text>Risk Level: <Text style={{color: GetColourForRiskLevel(riskLevel)}}>{riskLevel}</Text></Text>
+          </Card.FeaturedSubtitle>
       </Card>
     </TouchableOpacity>
   );

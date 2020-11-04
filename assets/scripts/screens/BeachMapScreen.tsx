@@ -1,6 +1,7 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
-import { beachMapStyles, GetColourForRiskLevel } from "../utils/Styles";
+import { BeachMapStyles, GetColourForRiskLevel } from "../utils/Styles";
+import { Text } from 'react-native'
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView, { Polygon } from "react-native-maps";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
@@ -37,12 +38,12 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={componentId}
+        title={<Text>Beach Map</Text>}>)}
       ></ScreenHeader>
       <SearchMap UpdateMap={setLocation} />
       <MapView
         provider={MapView.PROVIDER_GOOGLE}
-        style={beachMapStyles}
+        style={BeachMapStyles}
         region={location}
         mapType={settings.mapView}
         onRegionChangeComplete={setMapLocation}

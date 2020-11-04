@@ -1,11 +1,12 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Image } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { MockBeachItem, MockData } from "../utils/Constants";
 import { RowItem } from "../components/RowItem";
+import { HeaderLogoStyles } from "../utils/Styles";
 
 const componentId: ComponentRegistry = ComponentRegistry.Home;
 
@@ -16,7 +17,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={"BCP Beach Check"}
+        title={<Image source={require("../../icons/bcp-logo.png")} style={HeaderLogoStyles}></Image>}
       />
       <FlatList
         data={MockData}

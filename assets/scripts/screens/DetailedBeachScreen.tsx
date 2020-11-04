@@ -28,7 +28,7 @@ export const DetailedBeach = ({
   return (
     <>
       <ScreenHeader
-        title={beachName}
+        title={<Text>{beachName}</Text>}
         leftComponentOnPress={navigation.goBack}
         showBack={true}
       ></ScreenHeader>

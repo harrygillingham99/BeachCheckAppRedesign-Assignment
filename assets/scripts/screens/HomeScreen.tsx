@@ -4,9 +4,9 @@ import { FlatList, Image } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
-import { MockBeachItem, MockData } from "../utils/Constants";
+import { MockData } from "../utils/Constants";
 import { RowItem } from "../components/RowItem";
-import { HeaderLogoStyles } from "../utils/Styles";
+import { BCPLogo, HeaderLogoStyles } from "../utils/Styles";
 
 const componentId: ComponentRegistry = ComponentRegistry.Home;
 
@@ -17,7 +17,12 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={<Image source={require("../../icons/bcp-logo.png")} style={HeaderLogoStyles}></Image>}
+        title={
+          <Image
+            source={BCPLogo}
+            style={HeaderLogoStyles}
+          ></Image>
+        }
       />
       <FlatList
         data={MockData}
@@ -25,11 +30,13 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
           <RowItem
             beachName={item.beachName}
             riskLevel={item.riskLevel}
-            onPress={() => navigation.navigate("DetailedBeach", {
-              beachName: item.beachName,
-              latitude: item.latitude,
-              longditude: item.longitude,
-            })}
+            onPress={() =>
+              navigation.navigate("DetailedBeach", {
+                beachName: item.beachName,
+                latitude: item.latitude,
+                longditude: item.longitude,
+              })
+            }
           />
         )}
         keyExtractor={(item) => item.beachKey.toString()}

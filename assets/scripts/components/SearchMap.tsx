@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, FlatList } from "react-native";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { SearchBar } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
@@ -13,7 +13,6 @@ import {
   PostcodeRegex,
   SearchBarMessages,
 } from "../utils/Constants";
-import { FlatList } from "react-native-gesture-handler";
 import { MapContainer } from "../state/MapState";
 import { RowItem } from "./RowItem";
 
@@ -55,7 +54,7 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
   const SetSearch = (searchText: string) => {
     setState({
       search: searchText,
-      listFilterData: MockData.filter((x) => x.beachName.includes(searchText)),
+      listFilterData: searchText == "" ? [] : MockData.filter((x) => x.beachName.includes(searchText)),
     });
   };
 
@@ -110,10 +109,13 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
       ></SearchBar>
       <FlatList
         data={state.listFilterData}
+        keyExtractor={(item) => item.beachKey.toString()}
         renderItem={({ item }) => (
           <RowItem
             key={item.beachKey}
             beachName={item.beachName}
+            riskLevel={item.riskLevel}
+            isSearchList={true}
             onPress={() => onSearchItemPress(item.beachKey)}
           />
         )}

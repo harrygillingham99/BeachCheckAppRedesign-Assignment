@@ -26,7 +26,7 @@ export default function App() {
           <Drawer.Screen name="Settings" component={SettingsScreen} />
           <Drawer.Screen
             name="DetailedBeach"
-            options={{ title: "" }}
+            options={{ title: "" }} //In the strongly typed version of create(x)Navigator there is no overload to pass in options to hide screens
             component={DetailedBeach}
           />
         </Drawer.Navigator>

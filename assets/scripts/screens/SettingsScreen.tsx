@@ -1,11 +1,12 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { View, Button, ScrollView, Text, Switch } from "react-native";
-import { Picker } from "@react-native-community/picker";
+import Slider from "@react-native-community/slider";
+import DropDownPicker from "react-native-dropdown-picker";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
 import { ScreenHeader } from "../components/ScreenHeader";
-import { ListItem, Slider } from "react-native-elements";
+import { ListItem } from "react-native-elements";
 import { useContainer } from "unstated-next";
 import { SettingsContainer } from "../state/SettingsState";
 import { MapTypes } from "../utils/Constants";
@@ -27,32 +28,50 @@ const GetMapType = (text: React.ReactText): MapTypes => {
   }
 };
 
-export const SettingsScreen = ({ route, navigation }: SettingsProps) => {
+export const SettingsScreen = ({ navigation }: SettingsProps) => {
   const { settings, setSettings } = useContainer(SettingsContainer);
   return (
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={componentId}
+        title={<Text>{componentId}</Text>}
       ></ScreenHeader>
       <View style={{ flex: 1 }}>
         <ListItem>
-          <Text>Map View:</Text>
-          <Picker
-            selectedValue={settings.mapView}
-            style={{ height: 50, width: 150 }}
-            onValueChange={(itemValue) =>
-              setSettings({ mapView: GetMapType(itemValue) })
+          <Text>Polygon Opacity: </Text>
+          <Slider
+            style={{ width: 200, height: 40 }}
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor="#000000"
+            minimumValue={0}
+            maximumValue={1}
+            onSlidingComplete={(value) =>
+              setSettings({ polygonOpacity: value })
             }
-            mode={"dropdown"}
-          >
-            <Picker.Item label={MapTypes.standard} value={MapTypes.standard} />
-            <Picker.Item label={MapTypes.hybrid} value={MapTypes.hybrid} />
-            <Picker.Item
-              label={MapTypes.satellite}
-              value={MapTypes.satellite}
-            />
-          </Picker>
+          ></Slider>
+        </ListItem>
+        <ListItem>
+          <Text>Map View:</Text>
+          <DropDownPicker
+            items={[
+              { label: MapTypes.standard, value: MapTypes.standard },
+              { label: MapTypes.hybrid, value: MapTypes.hybrid },
+              { label: MapTypes.satellite, value: MapTypes.satellite },
+            ]}
+            defaultValue={MapTypes.standard}
+            onChangeItem={(itemValue) =>
+              setSettings({
+                mapView: GetMapType(itemValue.value),
+                polygonOpacity: settings.polygonOpacity ?? 0.5,
+              })
+            }
+            containerStyle={{ height: 40, width: 150 }}
+            style={{ backgroundColor: "#fafafa" }}
+            itemStyle={{
+              justifyContent: "flex-start",
+            }}
+            dropDownStyle={{ backgroundColor: "#fafafa" }}
+          />
         </ListItem>
       </View>
     </>

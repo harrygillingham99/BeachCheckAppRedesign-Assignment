@@ -1,5 +1,3 @@
-import { RowItem } from "../components/RowItem";
-
 export enum ComponentRegistry {
   Home = "Home",
   Map = "Map",

@@ -9,7 +9,7 @@ interface SettingsState {
 }
 
 const useSettingsState = () => {
-  const [settings, setSettings] = React.useState<SettingsState>({darkMode : false, polygonOpacity : 50, mapView: MapTypes.standard});
+  const [settings, setSettings] = React.useState<SettingsState>({darkMode : false, polygonOpacity : 0.5, mapView: MapTypes.standard});
   return { settings, setSettings };
 };
 

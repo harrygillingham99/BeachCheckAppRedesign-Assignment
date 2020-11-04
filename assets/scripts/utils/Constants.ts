@@ -76,7 +76,7 @@ export const MockData: MockBeachItem[] = [
       { latitude: 50.7017, longitude: -1.918201 },
       { latitude: 50.701292, longitude: -1.918802 },
     ],
-    riskLevel: BeachRiskLevel.Low,
+    riskLevel: BeachRiskLevel.VeryLow,
   },
   {
     beachKey: 2,

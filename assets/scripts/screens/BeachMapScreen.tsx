@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { BeachMapStyles, GetColourForRiskLevel } from "../utils/Styles";
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView, { Polygon } from "react-native-maps";
 import { ComponentRegistry } from "../utils/ComponentRegistry";
@@ -18,7 +18,10 @@ type BeachMapScreenProps = DrawerScreenProps<RootDrawerParams, "BeachMap">;
 
 export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
   const { location, setLocation } = MapContainer.useContainer();
-  const { settings } = SettingsContainer.useContainer()
+  const { settings, setSettings } = SettingsContainer.useContainer();
+
+  React.useEffect(() => setSettings({polygonOpacity : 50}),[]) 
+  //this is a bit of a hack, there is a known bug with polygons not listening to colour attributes so use effect with an empty array once to force a re render on first load
 
   const setMapLocation = ({
     latitude,
@@ -38,9 +41,10 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        title={<Text>Beach Map</Text>}>)}
+        title={<Text>Beach Map</Text>}
       ></ScreenHeader>
       <SearchMap UpdateMap={setLocation} />
+      <View style={{ alignSelf: 'center', width: '100%', height: '100%', overflow: 'hidden' }}>
       <MapView
         provider={MapView.PROVIDER_GOOGLE}
         style={BeachMapStyles}
@@ -49,16 +53,15 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
         onRegionChangeComplete={setMapLocation}
       >
         {MockData.map((beach) => {
-          const beachRiskColour = GetColourForRiskLevel(beach.riskLevel);
           return(
-          
           <Polygon
-            key={beach.beachKey}
+            key={beach.beachKey.toString()}
             coordinates={beach.mapPolygon}
-            fillColor={beachRiskColour}
+            fillColor={GetColourForRiskLevel(beach.riskLevel, false)}
           ></Polygon>
         )})}
       </MapView>
+      </View>
     </>
   );
 };

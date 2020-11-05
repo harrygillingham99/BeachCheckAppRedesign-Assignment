@@ -9,10 +9,9 @@ import { Text, View } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView, { Polygon } from "react-native-maps";
 import { SearchMap } from "../components/SearchMap";
-import { MapValues } from "../types/MapValues";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { MapContainer } from "../state/MapState";
-import { InitialMapLocation, MockData } from "../utils/Constants";
+import { MockData } from "../utils/Constants";
 import { SettingsContainer } from "../state/SettingsState";
 
 /* This is the base map screen which is referenced in the navigation stack. */
@@ -43,7 +42,7 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
           mapType={settings.mapView}
         >
           {MockData.map((beach) => {
-            const colour = GetColourForRiskLevel(beach.riskLevel, false);
+            const riskColour = GetColourForRiskLevel(beach.riskLevel, false);
             return (
               <React.Fragment key={`${beach.beachName}-fragment`}>
                 <Polygon
@@ -55,7 +54,7 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
                   }
                   tappable={true}
                   coordinates={beach.mapPolygon}
-                  fillColor={colour}
+                  fillColor={riskColour}
                 ></Polygon>
               </React.Fragment>
             );

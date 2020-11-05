@@ -16,7 +16,7 @@ interface ScreenHeaderProps {
 export const ScreenHeader = ({
   leftComponentOnPress,
   centerComponent,
-  showBack = false, // optional, used on the detailed beach view, to be able to return to the home screen easily
+  showBack = false, // optional, used on the detailed beach view, to be able to return to the previous easily
   rightComponent,
 }: ScreenHeaderProps) => {
   return (

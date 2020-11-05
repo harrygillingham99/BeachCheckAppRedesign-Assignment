@@ -32,7 +32,7 @@ const GetMapType = (text: React.ReactText): MapTypes => {
 };
 
 export const SettingsScreen = ({ navigation }: SettingsProps) => {
-  const { settings, setSettings } = useContainer(SettingsContainer);
+  const { settings, setSettings } = SettingsContainer.useContainer();
   return (
     <>
       <ScreenHeader

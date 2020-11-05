@@ -36,7 +36,7 @@ export const DetailedBeach = ({
   This is why global state was needed, I can update the map reigon with 
   the new values then push the user to the screen
   */
-  const SetBeach = () => {
+  const SetBeachThenShowMap = () : void => {
     navigation.navigate("BeachMap");
     setLocation(new MapValues(latitude, longitude));
   };
@@ -66,7 +66,7 @@ export const DetailedBeach = ({
           </Text>
         </Card.Title>
         <Card.Divider />
-        <Button title={"View on map"} onPress={SetBeach}></Button>
+        <Button title={"View on map"} onPress={SetBeachThenShowMap}></Button>
       </Card>
     </>
   );

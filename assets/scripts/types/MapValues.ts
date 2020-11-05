@@ -7,12 +7,12 @@ I opted to make the delta values optional as defaulting them in here seems clean
 export class MapValues {
   constructor(
     latitude: number,
-    longditude: number,
+    longitude: number,
     latDelta?: number,
     longDelta?: number
   ) {
     (this.latitude = latitude),
-      (this.longitude = longditude),
+      (this.longitude = longitude),
       (this.latitudeDelta = latDelta ?? DefaultLatDelta),
       (this.longitudeDelta = longDelta ?? DefaultLongDelta);
   }

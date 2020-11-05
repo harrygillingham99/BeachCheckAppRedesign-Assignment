@@ -28,20 +28,21 @@ export const SearchMap = () => {
   const { setLocation } = MapContainer.useContainer();
 
   /*
-  This is a reference to a search tooltip that will show when youn hit a validation error
+  This is a reference to a search tooltip, used to show the tooltip when you hit a validation error
   */
   const validationTooltipRef = React.useRef<Tooltip | null>(null);
-  const showTooltip = () => {
-    validationTooltipRef.current?.toggleTooltip();
-  };
+
+  const showTooltip = () => validationTooltipRef.current?.toggleTooltip();
+
 
   const SetSearch = (searchText: string) => {
+    const trimmedSearch = searchText.trim()
     setState({
       search: searchText,
       listFilterData:
-        searchText == ""
+        trimmedSearch == ""
           ? []
-          : MockData.filter((x) => x.beachName.includes(searchText)), // if there is no search text don't display any items
+          : MockData.filter((x) => x.beachName.includes(trimmedSearch)), // if there is no search text don't display any items
     });
   };
 
@@ -100,7 +101,7 @@ export const SearchMap = () => {
   };
 
   return (
-    <>
+    <View>
       <SearchBar
         placeholder={state.validationMessage ?? SearchBarMessages.Default}
         onChangeText={SetSearch}
@@ -127,6 +128,6 @@ export const SearchMap = () => {
           />
         )}
       ></FlatList>
-    </>
+    </View>
   );
 };

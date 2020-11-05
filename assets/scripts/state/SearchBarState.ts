@@ -35,7 +35,7 @@ const useSearchState = () => {
       return undefined;
     }
 
-    input = input.replace(" ", "");
+    input = input.replace(" ", "").trim();
 
     if (PostcodeExpression.test(input ?? "") === false) {
       return undefined;

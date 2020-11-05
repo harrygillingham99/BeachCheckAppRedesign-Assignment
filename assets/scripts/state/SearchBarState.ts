@@ -7,7 +7,7 @@ import {
 } from "../utils/Constants";
 
 /* 
-This is a global state container for the search bar state
+This is a global state container for the search bar component.
 */
 
 interface SearchBarState {

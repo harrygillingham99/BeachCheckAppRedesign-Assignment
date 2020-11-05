@@ -1,4 +1,4 @@
-import { Polygon, LatLng } from "react-native-maps";
+import { LatLng } from "react-native-maps";
 
 /* 
 This is a a constants file, containing all the enums, types and interfaces for the mock data and other stuff that doesn't belong in a component.
@@ -28,8 +28,8 @@ export const DefaultLatDelta = 0.003;
 export const DefaultLongDelta = 0.002;
 
 export const InitialMapLocation = {
-  latitude: 50.720806,
-  longitude: -1.904755,
+  latitude: 50.706461814683735,
+  longitude: -1.909446157515049,
   latitudeDelta: DefaultLatDelta,
   longitudeDelta: DefaultLongDelta,
 };

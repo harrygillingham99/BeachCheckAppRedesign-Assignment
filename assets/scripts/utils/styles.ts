@@ -60,6 +60,13 @@ export const DetailedViewImageStyles: StyleProp<ImageStyle> = {
   marginBottom: 10,
 };
 
+export const BeachMapWrapperStyles: StyleProp<ViewStyle> = {
+  alignSelf: "center",
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+};
+
 export const CardSubtitleStyles: StyleProp<TextStyle> = { textAlign: "center" };
 
 export const BCPLogo = require("../../icons/bcp-logo.png");

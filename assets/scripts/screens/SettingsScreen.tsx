@@ -1,6 +1,6 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
-import { View, Button, ScrollView, Text, Switch } from "react-native";
+import { View, Text } from "react-native";
 import Slider from "@react-native-community/slider";
 import DropDownPicker from "react-native-dropdown-picker";
 import { RootDrawerParams } from "../types/RootDrawerParams";
@@ -47,8 +47,9 @@ export const SettingsScreen = ({ navigation }: SettingsProps) => {
             minimumTrackTintColor="#FFFFFF"
             maximumTrackTintColor="#000000"
             minimumValue={0}
+            step={0.05}
             maximumValue={1}
-            value={settings.polygonOpacity}
+            value={0.5}
             onSlidingComplete={(value) =>
               setSettings({ polygonOpacity: value })
             }

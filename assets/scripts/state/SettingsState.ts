@@ -7,13 +7,17 @@ This is a global state container for the apps settings. It uses unstated-next to
 */
 
 interface SettingsState {
-  darkMode? : Boolean
-  polygonOpacity? : number
-  mapView?: MapTypes
+  darkMode?: Boolean;
+  polygonOpacity?: number;
+  mapView?: MapTypes;
 }
 
 const useSettingsState = () => {
-  const [settings, setSettings] = React.useState<SettingsState>({darkMode : false, polygonOpacity : 0.5, mapView: MapTypes.standard});
+  const [settings, setSettings] = React.useState<SettingsState>({
+    darkMode: false,
+    polygonOpacity: 0.7,
+    mapView: MapTypes.standard,
+  });
   return { settings, setSettings };
 };
 

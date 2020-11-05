@@ -10,14 +10,14 @@ interface ScreenHeaderProps {
   leftComponentOnPress: () => void; //a function reference to either go back or open the drawer, depending on whats passed in
   centerComponent: React.ReactElement;
   showBack?: boolean;
-  rightComponent?: React.ReactElement
+  rightComponent?: React.ReactElement;
 }
 
 export const ScreenHeader = ({
   leftComponentOnPress,
   centerComponent,
   showBack = false, // optional, used on the detailed beach view, to be able to return to the home screen easily
-  rightComponent
+  rightComponent,
 }: ScreenHeaderProps) => {
   return (
     <Header

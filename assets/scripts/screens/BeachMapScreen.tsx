@@ -1,6 +1,10 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
-import { BeachMapStyles, GetColourForRiskLevel } from "../utils/Styles";
+import {
+  BeachMapStyles,
+  BeachMapWrapperStyles,
+  GetColourForRiskLevel,
+} from "../utils/Styles";
 import { Text, View } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import MapView, { Polygon } from "react-native-maps";
@@ -16,23 +20,13 @@ import { SettingsContainer } from "../state/SettingsState";
 type BeachMapScreenProps = DrawerScreenProps<RootDrawerParams, "BeachMap">;
 
 export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
-  const { location, setLocation } = MapContainer.useContainer();
+  const { location } = MapContainer.useContainer();
   const { settings, setSettings } = SettingsContainer.useContainer();
 
-  React.useEffect(() => setSettings({ polygonOpacity: 50 }), []); //this is a bit of a hack, there is a known bug with polygons not listening to colour attributes so use effect with an empty array once to force a re render on first load
-
-  const setMapLocation = ({
-    latitude,
-    longitude,
-    latitudeDelta,
-    longitudeDelta,
-  }: MapValues) =>
-    setLocation({
-      latitude: latitude,
-      longitude: longitude,
-      latitudeDelta: latitudeDelta,
-      longitudeDelta: longitudeDelta,
-    });
+  /* This is a hacky workaround for a known problem with Polygons not listening to styles on initial render, re-setting to the opacity in state on first load to force a re-render seems to mitigate it */
+  React.useEffect(() => {
+      setSettings({ polygonOpacity: 0.5 });
+  }, []);
 
   return (
     <>
@@ -40,30 +34,30 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
         leftComponentOnPress={navigation.openDrawer}
         centerComponent={<Text>Beach Map</Text>}
       ></ScreenHeader>
-      <SearchMap UpdateMap={setLocation} />
-      <View
-        style={{
-          alignSelf: "center",
-          width: "100%",
-          height: "100%",
-          overflow: "hidden",
-        }}
-      >
+      <SearchMap/>
+      <View style={BeachMapWrapperStyles}>
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           style={BeachMapStyles}
           region={location}
           mapType={settings.mapView}
-          initialRegion={InitialMapLocation}
-          onRegionChangeComplete={setMapLocation}
         >
           {MockData.map((beach) => {
+            const colour = GetColourForRiskLevel(beach.riskLevel, false);
             return (
-              <Polygon
-                key={beach.beachKey.toString()}
-                coordinates={beach.mapPolygon}
-                fillColor={GetColourForRiskLevel(beach.riskLevel, false)}
-              ></Polygon>
+              <React.Fragment key={`${beach.beachName}-fragment`}>
+                <Polygon
+                  key={`${beach.beachName}-polygon`}
+                  onPress={() =>
+                    navigation.navigate("DetailedBeach", {
+                      beachKey: beach.beachKey,
+                    })
+                  }
+                  tappable={true}
+                  coordinates={beach.mapPolygon}
+                  fillColor={colour}
+                ></Polygon>
+              </React.Fragment>
             );
           })}
         </MapView>

@@ -5,6 +5,6 @@ This is the way to use a strongly typed navigator with typescript, giving proper
 export type RootDrawerParams = {
   Home: undefined;
   Settings: { testString: string } | undefined;
-  BeachMap:  undefined;
-  DetailedBeach : {beachName: string, latitude: number, longditude : number}
+  BeachMap: undefined;
+  DetailedBeach: { beachKey: number };
 };

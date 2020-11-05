@@ -17,10 +17,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
         centerComponent={
-          <Image
-            source={BCPLogo}
-            style={HeaderLogoStyles}
-          ></Image>
+          <Image source={BCPLogo} style={HeaderLogoStyles}></Image>
         }
       />
       <FlatList
@@ -31,9 +28,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
             riskLevel={item.riskLevel}
             onPress={() =>
               navigation.navigate("DetailedBeach", {
-                beachName: item.beachName,
-                latitude: item.latitude,
-                longditude: item.longitude,
+                beachKey: item.beachKey,
               })
             }
           />

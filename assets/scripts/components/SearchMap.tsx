@@ -1,59 +1,39 @@
 import React from "react";
-import { View, FlatList } from "react-native";
-import { SearchBar } from "react-native-elements";
+import { View, FlatList, Text, TextPropTypes } from "react-native";
+import { SearchBar, Tooltip } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
 import { MapValues } from "../types/MapValues";
 import {
   DefaultLatDelta,
   DefaultLongDelta,
   InitialMapLocation,
-  MockBeachItem,
   MockData,
-  PostcodeRegex,
   SearchBarMessages,
 } from "../utils/Constants";
 import { MapContainer } from "../state/MapState";
 import { RowItem } from "./RowItem";
+import { SearchContainer } from "../state/SearchBarState";
 
 /* 
 This is a custom search component used in the map screen. It will filter a flat list of beaches as the user searches and will search by postcode using Locator.ts when enter is pressed.    
 */
 
-/* 
-This method will validate and attempt to clean a postcode input before calling the api. 
-*/
-const ValidateSearchInput = (input?: string): String | undefined => {
-  const PostcodeExpression = new RegExp(PostcodeRegex);
+export const SearchMap = () => {
+  const {
+    state,
+    setState,
+    ValidateSearchInput,
+  } = SearchContainer.useContainer();
 
-  if (input === null || input === undefined) {
-    return undefined;
-  }
-
-  input = input.replace(" ", "");
-
-  if (PostcodeExpression.test(input ?? "") === false) {
-    return undefined;
-  }
-  return input;
-};
-
-interface SearchBarProps {
-  UpdateMap: React.Dispatch<React.SetStateAction<MapValues>>; // a function reference to update the location state for the map
-}
-
-interface SearchBarState {
-  search?: string;
-  validationMessage?: string;
-  listFilterData?: MockBeachItem[];
-}
-
-export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
-  const [state, setState] = React.useState<SearchBarState>({
-    search: "",
-    validationMessage: SearchBarMessages.Default,
-    listFilterData: [],
-  });
   const { setLocation } = MapContainer.useContainer();
+
+  /*
+  This is a reference to a search tooltip that will show when youn hit a validation error
+  */
+  const validationTooltipRef = React.useRef<Tooltip | null>(null);
+  const showTooltip = () => {
+    validationTooltipRef.current?.toggleTooltip();
+  };
 
   const SetSearch = (searchText: string) => {
     setState({
@@ -73,19 +53,20 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
   const doSearch = () => {
     if (state.search === "") {
       setState({ listFilterData: [] });
-      UpdateMap(InitialMapLocation);
+      setLocation(InitialMapLocation);
     }
 
     const searchInput = ValidateSearchInput(state.search);
 
     if (searchInput === undefined) {
       setState({ validationMessage: SearchBarMessages.ValidationError });
+      showTooltip();
       return;
     }
 
     GetLocation(state.search)
       .then((response) => {
-        UpdateMap(
+        setLocation(
           new MapValues(
             response.result.latitude,
             response.result.longitude,
@@ -95,9 +76,10 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
         );
       })
       .then(() => setState({ validationMessage: undefined }))
-      .catch(() =>
-        setState({ validationMessage: SearchBarMessages.Exception })
-      );
+      .catch(() => {
+        setState({ validationMessage: SearchBarMessages.Exception });
+        showTooltip();
+      });
   };
 
   /* 
@@ -116,14 +98,22 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
       longitudeDelta: DefaultLongDelta,
     });
   };
+
   return (
-    <View>
+    <>
       <SearchBar
         placeholder={state.validationMessage ?? SearchBarMessages.Default}
         onChangeText={SetSearch}
         value={state.search}
         onSubmitEditing={doSearch}
       ></SearchBar>
+      <Tooltip
+        height={120}
+        ref={validationTooltipRef}
+        popover={
+          <Text>Start typing the name of a beach or enter a UK postcode.</Text>
+        }
+      />
       <FlatList
         data={state.listFilterData}
         keyExtractor={(item) => item.beachKey.toString()}
@@ -137,6 +127,6 @@ export const SearchMap = ({ UpdateMap }: SearchBarProps) => {
           />
         )}
       ></FlatList>
-    </View>
+    </>
   );
 };

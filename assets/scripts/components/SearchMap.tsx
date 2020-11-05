@@ -66,11 +66,11 @@ export const SearchMap = () => {
     }
 
     GetLocation(state.search)
-      .then((response) => {
+      .then(({result}) => {
         setLocation(
           new MapValues(
-            response.result.latitude,
-            response.result.longitude,
+            result.latitude,
+            result.longitude,
             DefaultLatDelta,
             DefaultLongDelta
           )
@@ -90,7 +90,7 @@ export const SearchMap = () => {
   */
   const onSearchItemPress = (key: number) => {
     const { latitude, longitude } =
-      MockData.find((x) => x.beachKey == key) ?? InitialMapLocation;
+      MockData.find(({beachKey}) => beachKey == key) ?? InitialMapLocation;
     setState({ listFilterData: undefined });
     setLocation({
       latitude: latitude,
@@ -117,7 +117,7 @@ export const SearchMap = () => {
       />
       <FlatList
         data={state.listFilterData}
-        keyExtractor={(item) => item.beachKey.toString()}
+        keyExtractor={({beachKey}) => beachKey.toString()}
         renderItem={({ item }) => (
           <RowItem
             key={item.beachKey}

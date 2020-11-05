@@ -33,7 +33,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
             }
           />
         )}
-        keyExtractor={(item) => item.beachKey.toString()}
+        keyExtractor={({beachKey}) => beachKey.toString()}
       />
     </>
   );

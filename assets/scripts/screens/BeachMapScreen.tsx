@@ -41,19 +41,19 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
           region={location}
           mapType={settings.mapView}
         >
-          {MockData.map((beach) => {
-            const riskColour = GetColourForRiskLevel(beach.riskLevel, false);
+          {MockData.map(({riskLevel, beachKey, beachName, mapPolygon}) => {
+            const riskColour = GetColourForRiskLevel(riskLevel, false);
             return (
-              <React.Fragment key={`${beach.beachName}-fragment`}>
+              <React.Fragment key={`${beachName}-fragment`}>
                 <Polygon
-                  key={`${beach.beachName}-polygon`}
+                  key={`${beachName}-polygon`}
                   onPress={() =>
                     navigation.navigate("DetailedBeach", {
-                      beachKey: beach.beachKey,
+                      beachKey: beachKey,
                     })
                   }
                   tappable={true}
-                  coordinates={beach.mapPolygon}
+                  coordinates={mapPolygon}
                   fillColor={riskColour}
                 ></Polygon>
               </React.Fragment>

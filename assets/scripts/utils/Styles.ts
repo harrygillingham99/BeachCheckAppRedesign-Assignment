@@ -46,7 +46,12 @@ export const BeachMapStyles: StyleProp<ViewStyle> = {
 };
 
 export const SearchItemCardContainerStyles: StyleProp<ViewStyle> = {
-  height: 70,
+  height: 50,
+};
+
+export const SearchItemCardTitleStyle: StyleProp<TextStyle> = {
+  fontSize: 14,
+  textAlign: "center",
 };
 
 export const HeaderLogoStyles: StyleProp<ImageStyle> = {
@@ -54,8 +59,8 @@ export const HeaderLogoStyles: StyleProp<ImageStyle> = {
   width: 45,
   marginBottom: 5,
   justifyContent: "center",
-  borderColor: 'white',
-  borderWidth: 0.5
+  borderColor: "white",
+  borderWidth: 0.5,
 };
 
 export const HeaderStyles = {

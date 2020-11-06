@@ -32,7 +32,7 @@ const GetMapType = (text: React.ReactText): MapTypes => {
   }
 };
 
-export const SettingsScreen = ({ navigation }: SettingsProps) => {
+export const SettingsScreen = ({ navigation }: SettingsProps) : JSX.Element => {
   const { settings, setSettings } = SettingsContainer.useContainer();
   return (
     <>

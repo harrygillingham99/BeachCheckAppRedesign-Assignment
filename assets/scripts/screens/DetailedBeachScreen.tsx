@@ -27,7 +27,7 @@ type DetailedBeachScreenProps = DrawerScreenProps<
 export const DetailedBeach = ({
   navigation,
   route,
-}: DetailedBeachScreenProps) => {
+}: DetailedBeachScreenProps) : JSX.Element => {
   const { setLocation } = MapContainer.useContainer();
   const { beachKey } = route.params;
   const { beachName, latitude, longitude, riskLevel } =

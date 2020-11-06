@@ -11,7 +11,7 @@ import { BCPLogo, HeaderLogoStyles } from "../utils/Styles";
 
 type HomeProps = DrawerScreenProps<RootDrawerParams, "Home">;
 
-export const HomeScreen = ({ navigation }: HomeProps) => {
+export const HomeScreen = ({ navigation }: HomeProps) : JSX.Element => {
   return (
     <>
       <ScreenHeader

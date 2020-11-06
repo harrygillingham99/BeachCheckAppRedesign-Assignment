@@ -19,7 +19,7 @@ import { SettingsContainer } from "../state/SettingsState";
 
 type BeachMapScreenProps = DrawerScreenProps<RootDrawerParams, "BeachMap">;
 
-export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
+export const BeachMap = ({ navigation }: BeachMapScreenProps) : JSX.Element => {
   const { location } = MapContainer.useContainer();
   const { settings, setSettings } = SettingsContainer.useContainer();
 

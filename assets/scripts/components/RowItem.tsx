@@ -4,6 +4,7 @@ import {
   CardSubtitleStyles,
   GetColourForRiskLevel,
   SearchItemCardContainerStyles,
+  SearchItemCardTitleStyle,
 } from "../utils/Styles";
 import { Card, Text } from "react-native-elements";
 import { TouchableOpacity } from "react-native";
@@ -25,7 +26,7 @@ export const RowItem = ({
   riskLevel,
   onPress,
   isSearchList = false,
-}: RowItemProps) => {
+}: RowItemProps): JSX.Element => {
   return (
     <TouchableOpacity onPress={onPress}>
       <Card
@@ -33,9 +34,16 @@ export const RowItem = ({
           isSearchList ? SearchItemCardContainerStyles : undefined
         }
       >
-        <Card.Title>{beachName}</Card.Title>
+        {isSearchList && (
+          <Text style={SearchItemCardTitleStyle}>{beachName}</Text>
+        )}
         {!isSearchList && (
           <>
+            <Card.Title
+              style={isSearchList ? SearchItemCardTitleStyle : undefined}
+            >
+              {beachName}
+            </Card.Title>
             <Card.Divider />
             <Card.FeaturedSubtitle style={CardSubtitleStyles}>
               <Text>

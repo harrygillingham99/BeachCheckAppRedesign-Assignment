@@ -19,7 +19,7 @@ export const ScreenHeader = ({
   centerComponent,
   showBack = false, // optional, used on the detailed beach view, to be able to return to the previous easily
   rightComponent,
-}: ScreenHeaderProps) => {
+}: ScreenHeaderProps) : JSX.Element => {
   return (
     <Header
       leftComponent={

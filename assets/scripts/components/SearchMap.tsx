@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, Text, TextPropTypes } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import { SearchBar, Tooltip } from "react-native-elements";
 import { GetLocation } from "../utils/Locator";
 import { MapValues } from "../types/MapValues";
@@ -19,7 +19,7 @@ import { BCPPurple, HeaderStyles } from "../utils/Styles";
 This is a custom search component used in the map screen. It will filter a flat list of beaches as the user searches and will search by postcode using Locator.ts when enter is pressed.    
 */
 
-export const SearchMap = () => {
+export const SearchMap = () : JSX.Element => {
   const {
     state,
     setState,
@@ -121,6 +121,7 @@ export const SearchMap = () => {
       <FlatList
         data={state.listFilterData}
         keyExtractor={({ beachKey }) => beachKey.toString()}
+        scrollEnabled={false}
         renderItem={({ item }) => (
           <RowItem
             key={item.beachKey}

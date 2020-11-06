@@ -54,6 +54,8 @@ export const HeaderLogoStyles: StyleProp<ImageStyle> = {
   width: 45,
   marginBottom: 5,
   justifyContent: "center",
+  borderColor: 'white',
+  borderWidth: 0.5
 };
 
 export const HeaderStyles = {

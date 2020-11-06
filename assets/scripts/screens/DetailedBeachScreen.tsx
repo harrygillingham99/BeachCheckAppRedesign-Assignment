@@ -10,6 +10,7 @@ import {
   DetailedViewImageStyles,
   DistancePhoto,
   GetColourForRiskLevel,
+  HeaderStyles,
 } from "../utils/Styles";
 import { MockData } from "../utils/Constants";
 
@@ -34,7 +35,8 @@ export const DetailedBeach = ({
 
   /*
   This is why global state was needed, I can update the map reigon with 
-  the new values then push the user to the screen
+  the new values then push the user to the screen, navigation does not force a
+  re render so using route params was not viable.
   */
   const SetBeachThenShowMap = () : void => {
     navigation.navigate("BeachMap");
@@ -43,7 +45,7 @@ export const DetailedBeach = ({
   return (
     <>
       <ScreenHeader
-        centerComponent={<Text>Beach Details</Text>}
+        centerComponent={<Text style={HeaderStyles.textStyle}>Beach Details</Text>}
         leftComponentOnPress={navigation.goBack}
         showBack={true}
       ></ScreenHeader>

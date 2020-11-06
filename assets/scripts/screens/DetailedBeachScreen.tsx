@@ -7,6 +7,7 @@ import { Text, Image } from "react-native";
 import { MapValues } from "../types/MapValues";
 import { MapContainer } from "../state/MapState";
 import {
+  BCPPurple,
   DetailedViewImageStyles,
   DistancePhoto,
   GetColourForRiskLevel,
@@ -27,7 +28,7 @@ type DetailedBeachScreenProps = DrawerScreenProps<
 export const DetailedBeach = ({
   navigation,
   route,
-}: DetailedBeachScreenProps) : JSX.Element => {
+}: DetailedBeachScreenProps): JSX.Element => {
   const { setLocation } = MapContainer.useContainer();
   const { beachKey } = route.params;
   const { beachName, latitude, longitude, riskLevel } =
@@ -38,14 +39,16 @@ export const DetailedBeach = ({
   the new values then push the user to the screen, navigation does not force a
   re render so using route params was not viable.
   */
-  const SetBeachThenShowMap = () : void => {
+  const SetBeachThenShowMap = (): void => {
     navigation.navigate("BeachMap");
     setLocation(new MapValues(latitude, longitude));
   };
   return (
     <>
       <ScreenHeader
-        centerComponent={<Text style={HeaderStyles.textStyle}>Beach Details</Text>}
+        centerComponent={
+          <Text style={HeaderStyles.textStyle}>Beach Details</Text>
+        }
         leftComponentOnPress={navigation.goBack}
         showBack={true}
       ></ScreenHeader>
@@ -68,7 +71,11 @@ export const DetailedBeach = ({
           </Text>
         </Card.Title>
         <Card.Divider />
-        <Button title={"View on map"} onPress={SetBeachThenShowMap}></Button>
+        <Button
+          title={"View on map"}
+          onPress={SetBeachThenShowMap}
+          buttonStyle={{ backgroundColor: BCPPurple }}
+        ></Button>
       </Card>
     </>
   );

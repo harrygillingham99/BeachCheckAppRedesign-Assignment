@@ -13,6 +13,7 @@ import {
 import { MapContainer } from "../state/MapState";
 import { RowItem } from "./RowItem";
 import { SearchContainer } from "../state/SearchBarState";
+import { BCPPurple, HeaderStyles } from "../utils/Styles";
 
 /* 
 This is a custom search component used in the map screen. It will filter a flat list of beaches as the user searches and will search by postcode using Locator.ts when enter is pressed.    
@@ -34,9 +35,8 @@ export const SearchMap = () => {
 
   const showTooltip = () => validationTooltipRef.current?.toggleTooltip();
 
-
   const SetSearch = (searchText: string) => {
-    const trimmedSearch = searchText.trim()
+    const trimmedSearch = searchText.trim();
     setState({
       search: searchText,
       listFilterData:
@@ -66,7 +66,7 @@ export const SearchMap = () => {
     }
 
     GetLocation(state.search)
-      .then(({result}) => {
+      .then(({ result }) => {
         setLocation(
           new MapValues(
             result.latitude,
@@ -90,7 +90,7 @@ export const SearchMap = () => {
   */
   const onSearchItemPress = (key: number) => {
     const { latitude, longitude } =
-      MockData.find(({beachKey}) => beachKey == key) ?? InitialMapLocation;
+      MockData.find(({ beachKey }) => beachKey == key) ?? InitialMapLocation;
     setState({ listFilterData: undefined });
     setLocation({
       latitude: latitude,
@@ -110,14 +110,17 @@ export const SearchMap = () => {
       ></SearchBar>
       <Tooltip
         height={120}
+        backgroundColor={BCPPurple}
         ref={validationTooltipRef}
         popover={
-          <Text>Start typing the name of a beach or enter a UK postcode.</Text>
+          <Text style={HeaderStyles.textStyle}>
+            Start typing the name of a beach or enter a UK postcode.
+          </Text>
         }
       />
       <FlatList
         data={state.listFilterData}
-        keyExtractor={({beachKey}) => beachKey.toString()}
+        keyExtractor={({ beachKey }) => beachKey.toString()}
         renderItem={({ item }) => (
           <RowItem
             key={item.beachKey}

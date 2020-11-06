@@ -9,6 +9,7 @@ import { ListItem } from "react-native-elements";
 import { useContainer } from "unstated-next";
 import { SettingsContainer } from "../state/SettingsState";
 import { MapTypes } from "../utils/Constants";
+import { HeaderStyles } from "../utils/Styles";
 
 /* This is the settings screen which is referenced in the navigation stack. */
 
@@ -37,7 +38,7 @@ export const SettingsScreen = ({ navigation }: SettingsProps) => {
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        centerComponent={<Text>Settings</Text>}
+        centerComponent={<Text style={HeaderStyles.textStyle}>Settings</Text>}
       ></ScreenHeader>
       <View style={{ flex: 1 }}>
         <ListItem>

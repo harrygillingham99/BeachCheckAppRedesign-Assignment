@@ -1,5 +1,6 @@
 import { Header, Icon } from "react-native-elements";
 import * as React from "react";
+import { BCPPurple, HeaderStyles } from "../utils/Styles";
 
 /* 
 This is a custom header component used by the the screens in this application, 
@@ -25,10 +26,13 @@ export const ScreenHeader = ({
         <Icon
           name={showBack ? "chevron-left" : "menu"}
           onPress={leftComponentOnPress}
+          color={HeaderStyles.iconColour}
         />
       }
       rightComponent={rightComponent}
       centerComponent={centerComponent}
+      backgroundColor={BCPPurple}
+      style={HeaderStyles.containerStyle}
     ></Header>
   );
 };

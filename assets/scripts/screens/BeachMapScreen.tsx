@@ -4,6 +4,7 @@ import {
   BeachMapStyles,
   BeachMapWrapperStyles,
   GetColourForRiskLevel,
+  HeaderStyles,
 } from "../utils/Styles";
 import { Text, View } from "react-native";
 import { RootDrawerParams } from "../types/RootDrawerParams";
@@ -24,16 +25,16 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
 
   /* This is a hacky workaround for a known problem with Polygons not listening to styles on initial render, re-setting to the opacity in state on first load to force a re-render seems to mitigate it */
   React.useEffect(() => {
-      setSettings({ polygonOpacity: 0.5 });
+    setSettings({ polygonOpacity: 0.5 });
   }, []);
 
   return (
     <>
       <ScreenHeader
         leftComponentOnPress={navigation.openDrawer}
-        centerComponent={<Text>Beach Map</Text>}
+        centerComponent={<Text style={HeaderStyles.textStyle}>Beach Map</Text>}
       ></ScreenHeader>
-      <SearchMap/>
+      <SearchMap />
       <View style={BeachMapWrapperStyles}>
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
@@ -41,7 +42,7 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) => {
           region={location}
           mapType={settings.mapView}
         >
-          {MockData.map(({riskLevel, beachKey, beachName, mapPolygon}) => {
+          {MockData.map(({ riskLevel, beachKey, beachName, mapPolygon }) => {
             const riskColour = GetColourForRiskLevel(riskLevel, false);
             return (
               <React.Fragment key={`${beachName}-fragment`}>

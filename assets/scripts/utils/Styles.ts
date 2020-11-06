@@ -12,6 +12,9 @@ import { BeachRiskLevel } from "./Constants";
 This is another constants file but with all styling related functions and constants.
 */
 
+/*
+Using rgba strings here as its the only way to be able to toggle polygon opacity, and is compatible with normal styles.
+*/
 export const GetColourForRiskLevel = (
   risk?: BeachRiskLevel,
   opaque = true
@@ -33,7 +36,9 @@ export const GetColourForRiskLevel = (
   }
 };
 
-export const BeachMapStyles = {
+export const BCPPurple: string = "#361e54";
+
+export const BeachMapStyles: StyleProp<ViewStyle> = {
   width: Dimensions.get("window").width,
   height: Dimensions.get("window").height,
   marginBottom: Dimensions.get("window").height * 0.05,
@@ -49,6 +54,12 @@ export const HeaderLogoStyles: StyleProp<ImageStyle> = {
   width: 45,
   marginBottom: 5,
   justifyContent: "center",
+};
+
+export const HeaderStyles = {
+  iconColour: "white",
+  containerStyle: { height: 100 },
+  textStyle: { color: "white" },
 };
 
 export const DetailedViewImageStyles: StyleProp<ImageStyle> = {

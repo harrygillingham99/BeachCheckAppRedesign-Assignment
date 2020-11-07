@@ -41,6 +41,8 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) : JSX.Element => {
           style={BeachMapStyles}
           region={location}
           mapType={settings.mapView}
+          rotateEnabled={true}
+          showsTraffic={true}
         >
           {MockData.map(({ riskLevel, beachKey, beachName, mapPolygon }) => {
             const riskColour = GetColourForRiskLevel(riskLevel, false);

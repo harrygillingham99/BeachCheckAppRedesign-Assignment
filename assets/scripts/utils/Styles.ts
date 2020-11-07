@@ -75,7 +75,6 @@ export const HeaderLogoStyles: StyleProp<ImageStyle> = {
 
 export const HeaderStyles = {
   iconColour: "white",
-  containerStyle: { height: 100 },
   textStyle: { color: "white" },
 };
 

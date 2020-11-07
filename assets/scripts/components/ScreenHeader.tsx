@@ -32,7 +32,6 @@ export const ScreenHeader = ({
       rightComponent={rightComponent}
       centerComponent={centerComponent}
       backgroundColor={BCPPurple}
-      style={HeaderStyles.containerStyle}
     ></Header>
   );
 };

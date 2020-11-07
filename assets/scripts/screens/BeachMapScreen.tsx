@@ -37,7 +37,7 @@ export const BeachMap = ({ navigation }: BeachMapScreenProps) : JSX.Element => {
       <SearchMap />
       <View style={BeachMapWrapperStyles}>
         <MapView
-          provider={MapView.PROVIDER_GOOGLE}
+          provider={'google'}
           style={BeachMapStyles}
           region={location}
           mapType={settings.mapView}

@@ -6,34 +6,42 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { RootDrawerParams } from "../types/RootDrawerParams";
 import { ScreenHeader } from "../components/ScreenHeader";
 import { ListItem } from "react-native-elements";
-import { useContainer } from "unstated-next";
 import { SettingsContainer } from "../state/SettingsState";
 import { MapTypes } from "../utils/Constants";
-import { HeaderStyles } from "../utils/Styles";
+import { HeaderStyles, OpacitySliderSettings } from "../utils/Styles";
 
 /* This is the settings screen which is referenced in the navigation stack. */
 
 type SettingsProps = DrawerScreenProps<RootDrawerParams, "Settings">;
 
-/* 
-Seemingly pointless but nessesary to make typescript happy 
-and convert the ReactText object supplied by DropDownPicker back to a MapType
-*/
-const GetMapType = (text: React.ReactText): MapTypes => {
-  switch (text) {
-    case MapTypes.hybrid:
-      return MapTypes.hybrid;
-    case MapTypes.satellite:
-      return MapTypes.satellite;
-    case MapTypes.standard:
-      return MapTypes.standard;
-    default:
-      return MapTypes.standard;
-  }
-};
-
-export const SettingsScreen = ({ navigation }: SettingsProps) : JSX.Element => {
+export const SettingsScreen = ({ navigation }: SettingsProps): JSX.Element => {
   const { settings, setSettings } = SettingsContainer.useContainer();
+  const {
+    style,
+    minTrackTint,
+    maxTrackTint,
+    minVal,
+    maxVal,
+    step,
+    initialVal,
+  } = OpacitySliderSettings;
+
+  /* 
+  Seemingly pointless but nessesary to make typescript happy 
+  and convert the ReactText object supplied by DropDownPicker back to a MapType
+  */
+  const GetMapType = (text: React.ReactText): MapTypes => {
+    switch (text) {
+      case MapTypes.hybrid:
+        return MapTypes.hybrid;
+      case MapTypes.satellite:
+        return MapTypes.satellite;
+      case MapTypes.standard:
+        return MapTypes.standard;
+      default:
+        return MapTypes.standard;
+    }
+  };
   return (
     <>
       <ScreenHeader
@@ -44,13 +52,13 @@ export const SettingsScreen = ({ navigation }: SettingsProps) : JSX.Element => {
         <ListItem>
           <Text>Polygon Opacity:</Text>
           <Slider
-            style={{ width: 180, height: 40 }}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            minimumValue={0}
-            step={0.05}
-            maximumValue={1}
-            value={0.5}
+            style={style}
+            minimumTrackTintColor={minTrackTint}
+            maximumTrackTintColor={maxTrackTint}
+            minimumValue={minVal}
+            step={step}
+            maximumValue={maxVal}
+            value={initialVal}
             onSlidingComplete={(value) =>
               setSettings({ polygonOpacity: value })
             }

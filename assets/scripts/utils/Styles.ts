@@ -45,6 +45,16 @@ export const BeachMapStyles: StyleProp<ViewStyle> = {
   flex: 1,
 };
 
+export const OpacitySliderSettings = {
+  style: { width: 180, height: 40 },
+  minTrackTint: "#FFFFFF",
+  maxTrackTint: "#000000",
+  minVal: 0,
+  maxVal: 1,
+  step: 0.05,
+  initialVal: 0.5,
+};
+
 export const SearchItemCardContainerStyles: StyleProp<ViewStyle> = {
   height: 50,
 };

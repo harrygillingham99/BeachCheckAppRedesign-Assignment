@@ -1,6 +1,8 @@
 # BeachCheck Assignment
 
-A mock up BCP Beach Check app redesign for UbiComp 2020-2021 Assignment at Bournemouth University
+A mock up BCP Beach Check app redesign for UbiComp 2020-2021 Assignment at Bournemouth University.
+
+Built with React Native & Expo CLI
 
 Recieved 91/100
 

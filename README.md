@@ -1,6 +1,8 @@
 # BeachCheck Assignment
 
-A mock up BCP Beach Check app redesign for UbiComp 2020-2021 Assignment
+A mock up BCP Beach Check app redesign for UbiComp 2020-2021 Assignment at Bournemouth University
+
+Recieved 91/100
 
 # Running it
 
